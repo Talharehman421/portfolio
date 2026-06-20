@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Talha Rehman — Computational Biologist &amp; Data Engineer</title>
+<meta name="description" content="Talha Rehman — Bridging computational engineering and genomic biology. NGS pipelines, ML systems, and biomedical data science." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+  :root {
+    --ink:        #0A0E14;
+    --ink-2:      #0F1620;
+    --ink-3:      #141C28;
+    --surface:    #111922;
+    --surface-2:  #16202B;
+    --border:     rgba(255,255,255,0.08);
+    --border-2:   rgba(255,255,255,0.14);
+    --teal:       #2DD4BF;
+    --teal-dim:   #1A8F82;
+    --teal-glow:  rgba(45,212,191,0.18);
+    --amber:      #F0B429;
+    --amber-dim:  #B8870F;
+    --amber-glow: rgba(240,180,41,0.16);
+    --text-1:     #EDEFF2;
+    --text-2:     #9BA6B4;
+    --text-3:     #5E6B7D;
+
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--ink);
+    color: var(--text-1);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--teal-glow); color: var(--text-1); }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* ===== BACKGROUND FIELD ===== */
+  .bg-field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 900px 600px at 18% -5%, var(--teal-glow), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 30%, var(--amber-glow), transparent 55%),
+      radial-gradient(ellipse 800px 700px at 0% 90%, rgba(45,212,191,0.08), transparent 60%);
+  }
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 64px;
+    background: rgba(10,14,20,0.72);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mark {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--teal); letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-mark .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 8px var(--teal); }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-2); padding: 8px 14px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-1); background: var(--surface); }
+  .nav-cta {
+    font-family: var(--mono); font-size: 12.5px; font-weight: 500;
+    color: var(--ink); background: var(--teal);
+    padding: 8px 16px; border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 0 0 1px rgba(45,212,191,0.3);
+  }
+  .nav-cta:hover { background: #4EE5D0; transform: translateY(-1px); }
+
+  @media (max-width: 760px) { .nav-links { display: none; } nav { padding: 0 1.25rem; } }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center;
+    max-width: 1080px; margin: 0 auto; padding: 4rem 2rem 3rem;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 12.5px; color: var(--teal);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(45,212,191,0.3);
+    background: rgba(45,212,191,0.06);
+    padding: 6px 14px; border-radius: 99px;
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5.2vw, 3.85rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 .accent { color: var(--teal); }
+  .hero h1 .accent-amber { color: var(--amber); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text-2); max-width: 540px;
+    margin-bottom: 2.25rem; line-height: 1.7;
+  }
+  .hero-sub strong { color: var(--text-1); font-weight: 600; }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 2.5rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13.5px; font-weight: 500; font-family: var(--body);
+    padding: 11px 20px; border-radius: 8px;
+    cursor: pointer; transition: all 0.2s; border: 1px solid var(--border-2);
+  }
+  .btn-primary {
+    background: var(--teal); color: var(--ink); border-color: var(--teal);
+  }
+  .btn-primary:hover { background: #4EE5D0; box-shadow: 0 0 24px var(--teal-glow); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text-1); }
+  .btn-ghost:hover { background: var(--surface); border-color: var(--border-2); }
+
+  .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .hstat .n { font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--text-1); }
+  .hstat .l { font-size: 11.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+
+  /* ===== DNA / CIRCUIT SIGNATURE ===== */
+  .signature-box {
+    aspect-ratio: 1/1.15;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .signature-box svg { width: 100%; height: 100%; max-width: 340px; }
+
+  @keyframes pulse-node {
+    0%, 100% { opacity: 0.35; r: 2.4; }
+    50% { opacity: 1; r: 3.4; }
+  }
+  @keyframes flow {
+    to { stroke-dashoffset: -200; }
+  }
+  .helix-strand { animation: flow 6s linear infinite; }
+  .helix-node { animation: pulse-node 3s ease-in-out infinite; }
+
+  /* ===== SECTIONS ===== */
+  .section { max-width: 1080px; margin: 0 auto; padding: 5.5rem 2rem; position: relative; }
+  @media (max-width: 760px) { .section { padding: 3.5rem 1.25rem; } }
+
+  .section-head { margin-bottom: 2.75rem; max-width: 640px; }
+  .section-tag {
+    font-family: var(--mono); font-size: 12px; color: var(--amber);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.01em; margin-bottom: 0.75rem;
+  }
+  .section-desc { color: var(--text-2); font-size: 15px; line-height: 1.7; }
+
+  .divider {
+    height: 1px; max-width: 1080px; margin: 0 auto;
+    background: linear-gradient(90deg, transparent, var(--border-2) 20%, var(--border-2) 80%, transparent);
+  }
+
+  /* ===== WHY HIRE / DUAL TRACK ===== */
+  .track-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 760px) { .track-grid { grid-template-columns: 1fr; } }
+  .track-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .track-card:hover { transform: translateY(-3px); }
+  .track-card.teal-track:hover { border-color: rgba(45,212,191,0.4); }
+  .track-card.amber-track:hover { border-color: rgba(240,180,41,0.4); }
+  .track-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .track-card.teal-track::before { background: linear-gradient(90deg, var(--teal), transparent); }
+  .track-card.amber-track::before { background: linear-gradient(90deg, var(--amber), transparent); }
+  .track-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; margin-bottom: 1rem;
+  }
+  .track-icon.teal { background: rgba(45,212,191,0.12); color: var(--teal); }
+  .track-icon.amber { background: rgba(240,180,41,0.12); color: var(--amber); }
+  .track-card h3 { font-family: var(--display); font-size: 16px; font-weight: 600; margin-bottom: 0.6rem; }
+  .track-card p { font-size: 13.5px; color: var(--text-2); line-height: 1.65; }
+  .track-label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 0.4rem; display: block;
+  }
+  .track-label.teal { color: var(--teal); }
+  .track-label.amber { color: var(--amber); }
+
+  /* ===== METRICS STRIP ===== */
+  .metrics-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden;
+  }
+  @media (max-width: 700px) { .metrics-strip { grid-template-columns: repeat(2, 1fr); } }
+  .metric-cell { background: var(--surface); padding: 1.75rem 1.25rem; text-align: center; }
+  .metric-cell .num { font-family: var(--mono); font-size: 28px; font-weight: 600; margin-bottom: 4px; }
+  .metric-cell .lbl { font-size: 11.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
+  .m-teal { color: var(--teal); } .m-amber { color: var(--amber); }
+
+  /* ===== SKILLS ===== */
+  .skills-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem;
+  }
+  .skill-row { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+  .skill-row:last-child { border-bottom: none; }
+  @media (max-width: 640px) { .skill-row { grid-template-columns: 1fr; gap: 0.6rem; } }
+  .skill-cat { display: flex; align-items: center; gap: 9px; }
+  .skill-cat i { font-size: 16px; color: var(--text-3); }
+  .skill-cat span { font-family: var(--mono); font-size: 12.5px; color: var(--text-2); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .stag {
+    font-size: 12.5px; padding: 5px 12px; border-radius: 6px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-1);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .stag.hot { border-color: rgba(45,212,191,0.35); color: var(--teal); background: rgba(45,212,191,0.06); }
+
+  /* ===== PROJECTS ===== */
+  .proj-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.25rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+  }
+  .proj-card:hover { border-color: var(--border-2); transform: translateY(-2px); }
+  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: 1rem; }
+  .proj-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .proj-title { font-family: var(--display); font-size: 18px; font-weight: 600; }
+  .proj-badge {
+    font-family: var(--mono); font-size: 10.5px; padding: 3px 10px; border-radius: 99px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .proj-badge.flagship { background: rgba(240,180,41,0.14); color: var(--amber); border: 1px solid rgba(240,180,41,0.3); }
+  .proj-link {
+    font-family: var(--mono); font-size: 12px; color: var(--text-2);
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    padding: 7px 13px; border: 1px solid var(--border-2); border-radius: 7px;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .proj-link:hover { color: var(--teal); border-color: var(--teal-dim); background: rgba(45,212,191,0.06); }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+  .ptag { font-size: 11.5px; padding: 4px 10px; border-radius: 5px; background: var(--surface-2); color: var(--text-2); font-family: var(--mono); }
+  .proj-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  .pmetric {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 7px;
+  }
+  .pmetric.teal { background: rgba(45,212,191,0.1); color: var(--teal); }
+  .pmetric.amber { background: rgba(240,180,41,0.1); color: var(--amber); }
+  .proj-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+  /* ===== EXPERIENCE TIMELINE ===== */
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item {
+    display: grid; grid-template-columns: 140px 1fr; gap: 1.75rem;
+    padding: 1.75rem 0; border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  @media (max-width: 640px) { .exp-item { grid-template-columns: 1fr; gap: 0.5rem; } }
+  .exp-period { font-family: var(--mono); font-size: 12px; color: var(--text-3); padding-top: 3px; }
+  .exp-role { font-family: var(--display); font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+  .exp-org { font-size: 13.5px; color: var(--teal); margin-bottom: 0.85rem; }
+  .exp-bullets { display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li { list-style: none; font-size: 13.5px; color: var(--text-2); line-height: 1.65; padding-left: 1.1rem; position: relative; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--text-3); font-size: 12px; }
+
+  /* ===== EDUCATION ===== */
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  @media (max-width: 700px) { .edu-grid { grid-template-columns: 1fr; } }
+  .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; }
+  .edu-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .edu-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .edu-card h4 { font-family: var(--display); font-size: 15.5px; font-weight: 600; margin-bottom: 3px; }
+  .edu-card .uni { font-size: 13px; color: var(--text-2); margin-bottom: 1rem; }
+  .edu-foot { display: flex; justify-content: space-between; align-items: center; }
+  .edu-foot .yr { font-family: var(--mono); font-size: 11.5px; color: var(--text-3); }
+  .cgpa { font-family: var(--mono); font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: 99px; }
+  .cgpa.high { background: rgba(45,212,191,0.12); color: var(--teal); }
+  .cgpa.norm { background: var(--surface-2); color: var(--text-2); }
+
+  /* ===== CERTS ===== */
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  @media (max-width: 640px) { .cert-grid { grid-template-columns: 1fr; } }
+  .cert-chip {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .cert-chip i { font-size: 17px; color: var(--amber); flex-shrink: 0; }
+  .cert-chip .cname { font-size: 13.5px; font-weight: 500; }
+  .cert-chip .corg { font-size: 11.5px; color: var(--text-3); }
+
+  /* ===== GOALS ===== */
+  .goals-banner {
+    background: linear-gradient(135deg, rgba(45,212,191,0.08), rgba(240,180,41,0.05));
+    border: 1px solid var(--border-2); border-radius: 16px;
+    padding: 2.5rem;
+  }
+  .goals-banner p { font-size: 15.5px; color: var(--text-1); line-height: 1.8; }
+  .goals-banner strong { color: var(--teal); font-weight: 600; }
+  .goals-banner strong.amber-strong { color: var(--amber); }
+
+  /* ===== CONTACT / CTA ===== */
+  .cta-section {
+    text-align: center; padding: 6rem 2rem;
+    max-width: 760px; margin: 0 auto;
+  }
+  .cta-section h2 {
+    font-family: var(--display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.8rem);
+    letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  .cta-section .sub { color: var(--text-2); font-size: 15.5px; margin-bottom: 2.25rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  footer { text-align: center; padding: 2.5rem 1rem 3rem; border-top: 1px solid var(--border); }
+  footer p { font-size: 12.5px; color: var(--text-3); font-family: var(--mono); }
+</style>
+</head>
+<body>
+
+<div class="bg-field"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+
+<nav>
+  <div class="nav-mark"><span class="dot"></span>TALHA.REHMAN</div>
+  <div class="nav-links">
+    <a href="#approach">Approach</a>
+    <a href="#skills">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+  </div>
+  <a href="mailto:talharehmanhcs421@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><i class="ti ti-circle-dot" aria-hidden="true"></i>Open to work — internships &amp; full-time</span>
+      <h1>Engineering systems for biology.<br>Computational <span class="accent">precision</span>, biological <span class="accent-amber">depth</span>.</h1>
+      <p class="hero-sub">I'm <strong>Talha Rehman</strong> — an M.Sc. Bioinformatics candidate who builds production-grade NGS pipelines, ML models, and data systems on top of deep wet-lab biological grounding. I read variant calls and write Python with equal fluency.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary"><i class="ti ti-rocket" aria-hidden="true"></i>View projects</a>
+        <a href="mailto:talharehmanhcs421@gmail.com" class="btn btn-ghost"><i class="ti ti-mail" aria-hidden="true"></i>Email me</a>
+        <a href="https://github.com/Talharehman421" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ti ti-brand-github" aria-hidden="true"></i>GitHub</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="n">9.11</div><div class="l">CGPA / 10</div></div>
+        <div class="hstat"><div class="n">16.5K+</div><div class="l">DEGs mapped</div></div>
+        <div class="hstat"><div class="n">0.99</div><div class="l">Best AUC</div></div>
+        <div class="hstat"><div class="n">5</div><div class="l">Internships</div></div>
+      </div>
+    </div>
+
+    <div class="signature-box" aria-hidden="true">
+      <svg viewBox="0 0 200 260" fill="none">
+        <defs>
+          <linearGradient id="strandA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0.15"/>
+          </linearGradient>
+          <linearGradient id="strandB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F0B429" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#F0B429" stop-opacity="0.9"/>
+          </linearGradient>
+        </defs>
+        <path class="helix-strand" d="M40,10 C100,40 0,80 60,110 C120,140 20,180 80,210 C120,230 60,245 40,250"
+          stroke="url(#strandA)" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/>
+        <path class="helix-strand" d="M160,10 C100,40 200,80 140,110 C80,140 180,180 120,210 C80,230 140,245 160,250"
+          stroke="url(#strandB)" stroke-width="2.5" stroke-dasharray="6 6" fill="none" style="animation-delay:-2s"/>
+        <g stroke="rgba(255,255,255,0.12)" stroke-width="1">
+          <line x1="48" y1="25" x2="152" y2="25"/>
+          <line x1="55" y1="55" x2="145" y2="55"/>
+          <line x1="35" y1="90" x2="165" y2="90"/>
+          <line x1="65" y1="120" x2="135" y2="120"/>
+          <line x1="45" y1="155" x2="155" y2="155"/>
+          <line x1="60" y1="185" x2="140" y2="185"/>
+          <line x1="50" y1="215" x2="150" y2="215"/>
+          <line x1="42" y1="240" x2="158" y2="240"/>
+        </g>
+        <circle class="helix-node" cx="48" cy="25" r="3" fill="#2DD4BF"/>
+        <circle class="helix-node" cx="152" cy="25" r="3" fill="#F0B429" style="animation-delay:-0.5s"/>
+        <circle class="helix-node" cx="35" cy="90" r="3" fill="#2DD4BF" style="animation-delay:-1s"/>
+        <circle class="helix-node" cx="165" cy="90" r="3" fill="#F0B429" style="animation-delay:-1.5s"/>
+        <circle class="helix-node" cx="45" cy="155" r="3" fill="#2DD4BF" style="animation-delay:-2s"/>
+        <circle class="helix-node" cx="155" cy="155" r="3" fill="#F0B429" style="animation-delay:-2.5s"/>
+        <circle class="helix-node" cx="50" cy="215" r="3" fill="#2DD4BF" style="animation-delay:-0.8s"/>
+        <circle class="helix-node" cx="150" cy="215" r="3" fill="#F0B429" style="animation-delay:-1.2s"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- APPROACH / WHY HIRE ME -->
+<section class="section" id="approach">
+  <div class="section-head">
+    <span class="section-tag">// Why this profile works anywhere</span>
+    <h2 class="section-title">One skillset, two entry points</h2>
+    <p class="section-desc">Most candidates are either pure engineers or pure biologists. My work sits at the intersection — which means I can plug into a software/data team immediately, or lead biological interpretation for a genomics team. Hiring managers from either side find a direct fit below.</p>
+  </div>
+  <div class="track-grid">
+    <div class="track-card teal-track">
+      <span class="track-label teal">For technical / data roles</span>
+      <div class="track-icon teal"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+      <h3>I ship production-minded ML &amp; data systems</h3>
+      <p>End-to-end pipelines in Python with proper validation, ensemble modeling (XGBoost, LightGBM), explainability via SHAP, and rigorous evaluation (ROC-AUC, F1, recall). Comfortable with Linux, Git, and reproducible Conda environments — I write code a team can actually maintain.</p>
+    </div>
+    <div class="track-card amber-track">
+      <span class="track-label amber">For bioinformatics / genomics roles</span>
+      <div class="track-icon amber"><i class="ti ti-dna" aria-hidden="true"></i></div>
+      <h3>I understand the biology behind the data</h3>
+      <p>Trained in NGS workflows end-to-end — alignment, variant calling, differential expression — and grounded in real wet-lab exposure (pathology, biochemistry, immunology). I don't just process FASTQ files; I can interpret what a differentially expressed gene means clinically.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- METRICS -->
+<section class="section">
+  <div class="metrics-strip">
+    <div class="metric-cell"><div class="num m-teal">1,232</div><div class="lbl">TCGA samples analyzed</div></div>
+    <div class="metric-cell"><div class="num m-amber">16,528</div><div class="lbl">DEGs identified</div></div>
+    <div class="metric-cell"><div class="num m-teal">0.99</div><div class="lbl">Best model AUC</div></div>
+    <div class="metric-cell"><div class="num m-amber">99.9%</div><div class="lbl">Fraud detection accuracy</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-head">
+    <span class="section-tag">// The stack</span>
+    <h2 class="section-title">Tools across both disciplines</h2>
+    <p class="section-desc">Highlighted tags are the ones I reach for most often in production work.</p>
+  </div>
+  <div class="skills-panel">
+    <div class="skill-row">
+      <div class="skill-cat"><i class="ti ti-dna-2" aria-hidden="true"></i><span>NGS &amp; PIPELINES</span></div>
+      <div class="skill-tags">
+        <span class="stag hot">HISAT2</span><span class="stag hot">STAR</span><span class="stag hot">BWA-MEM2</span><span class="stag hot">GATK4</span><span class="stag">Samtools</span><span class="stag">Trimmomatic</span><span class="stag">FastQC</span><span class="stag">featureCounts</span><span class="stag">Snakemake</span><span class="stag">Conda</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat"><i class="ti ti-chart-scatter" aria-hidden="true"></i><span>GENOMICS &amp; VARIANTS</span></div>
+      <div class="skill-tags">
+        <span class="stag hot">DESeq2</span><span class="stag hot">edgeR</span><span class="stag">Mutect2</span><span class="stag">Bcftools</span><span class="stag">WGCNA</span><span class="stag">ClinVar</span><span class="stag">gnomAD</span><span class="stag">COSMIC</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat"><i class="ti ti-brain" aria-hidden="true"></i><span>MACHINE LEARNING</span></div>
+      <div class="skill-tags">
+        <span class="stag hot">XGBoost</span><span class="stag hot">LightGBM</span><span class="stag hot">SHAP</span><span class="stag">Scikit-learn</span><span class="stag">SMOTE</span><span class="stag">Random Forest</span><span class="stag">ROC-AUC</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat"><i class="ti ti-terminal-2" aria-hidden="true"></i><span>PROGRAMMING</span></div>
+      <div class="skill-tags">
+        <span class="stag hot">Python</span><span class="stag hot">R</span><span class="stag">SQL</span><span class="stag">Bash</span><span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Biopython</span><span class="stag">FastAPI</span><span class="stag">React</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat"><i class="ti ti-server-2" aria-hidden="true"></i><span>TOOLS &amp; DATABASES</span></div>
+      <div class="skill-tags">
+        <span class="stag">Linux/Unix</span><span class="stag hot">Git/GitHub</span><span class="stag">TCGA</span><span class="stag">GEO</span><span class="stag">NCBI</span><span class="stag">Bioconductor</span><span class="stag">Jupyter</span><span class="stag">RStudio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-head">
+    <span class="section-tag">// Selected work</span>
+    <h2 class="section-title">Projects that prove both halves</h2>
+    <p class="section-desc">Each one pairs a real biological question with a rigorous computational solution — fully documented and reproducible.</p>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-top">
+      <div>
+        <div class="proj-title-row">
+          <span class="proj-title">RNA-seq differential expression — TCGA breast cancer</span>
+          <span class="proj-badge flagship">Flagship</span>
+        </div>
+      </div>
+      <a href="https://github.com/Talharehman421/rna-seq-analysis" target="_blank" rel="noopener" class="proj-link"><i class="ti ti-external-link" aria-hidden="true"></i>Source</a>
+    </div>
+    <div class="proj-stack">
+      <span class="ptag">DESeq2</span><span class="ptag">HISAT2</span><span class="ptag">GATK4</span><span class="ptag">R</span><span class="ptag">Python</span>
+    </div>
+    <div class="proj-metrics">
+      <span class="pmetric teal"><i class="ti ti-database" aria-hidden="true"></i>1,232 samples</span>
+      <span class="pmetric amber"><i class="ti ti-chart-bar" aria-hidden="true"></i>16,528 DEGs</span>
+    </div>
+    <p class="proj-desc">Built a complete NGS pipeline (FASTQ → alignment → quantification) on TCGA-BRCA data following GATK4 best practices. Identified key oncogenes (MMP11, NEK2) and tumour suppressors (FHL1, TNS1), cross-validated against ClinVar, gnomAD, and COSMIC. Delivered publication-quality volcano plots, PCA, and heatmaps with fully reproducible code.</p>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-title-row"><span class="proj-title">Explainable multimodal ML — Type 2 Diabetes risk</span></div>
+      <a href="https://github.com/Talharehman421/Multimodal-T2D-Classifier-Model-Training" target="_blank" rel="noopener" class="proj-link"><i class="ti ti-external-link" aria-hidden="true"></i>Source</a>
+    </div>
+    <div class="proj-stack">
+      <span class="ptag">XGBoost</span><span class="ptag">LightGBM</span><span class="ptag">SHAP</span><span class="ptag">SMOTE</span><span class="ptag">Python</span>
+    </div>
+    <div class="proj-metrics">
+      <span class="pmetric teal"><i class="ti ti-layers" aria-hidden="true"></i>3 data modalities</span>
+      <span class="pmetric amber"><i class="ti ti-trending-up" aria-hidden="true"></i>AUC = 0.99</span>
+    </div>
+    <p class="proj-desc">Fused clinical EHR data, lifestyle survey responses, and RNA-seq gene expression into one ensemble pipeline. Applied SMOTE for class balance and SHAP for interpretability — surfacing the molecular and behavioural drivers behind each prediction, not just a black-box score.</p>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-title-row"><span class="proj-title">Germline &amp; somatic variant calling pipeline</span></div>
+      <span></span>
+    </div>
+    <div class="proj-stack">
+      <span class="ptag">GATK4</span><span class="ptag">Mutect2</span><span class="ptag">BWA-MEM2</span><span class="ptag">Bcftools</span>
+    </div>
+    <p class="proj-desc">Implemented the GATK4 best-practices germline workflow (BWA-MEM2 → MarkDuplicates → BQSR → HaplotypeCaller → VQSR) on public WGS data, annotating variants against ClinVar and gnomAD. Extended into somatic calling with Mutect2 tumour–normal mode, including PON construction and ACMG-style pathogenicity classification.</p>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-top">
+      <div class="proj-title-row"><span class="proj-title">Online payment fraud detection</span></div>
+      <span></span>
+    </div>
+    <div class="proj-stack">
+      <span class="ptag">Random Forest</span><span class="ptag">SMOTE</span><span class="ptag">Python</span>
+    </div>
+    <div class="proj-metrics">
+      <span class="pmetric teal"><i class="ti ti-shield-check" aria-hidden="true"></i>99.9% accuracy</span>
+    </div>
+    <p class="proj-desc">Designed and trained supervised models to flag fraudulent transactions in real-world payment data, with strong ROC-AUC performance — a reminder that the pattern-recognition skills behind genomics transfer cleanly to any high-stakes prediction problem.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-head">
+    <span class="section-tag">// Track record</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-period">MAY – JUL 2025</div>
+      <div>
+        <div class="exp-role">Machine Learning Intern</div>
+        <div class="exp-org">Plasmid Innovation (MSME-supported) · Remote</div>
+        <ul class="exp-bullets">
+          <li>Built Python ML pipelines for fraud detection, achieving 99.9% accuracy with strong ROC-AUC performance.</li>
+          <li>Applied SMOTE-based optimisation for class imbalance, improving recall by 18% over baseline.</li>
+          <li>Delivered modular, reusable code and clear technical reporting to an interdisciplinary team.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">MAR – MAY 2025</div>
+      <div>
+        <div class="exp-role">Data Science Trainee</div>
+        <div class="exp-org">Main Flow Services &amp; Technologies · Remote</div>
+        <ul class="exp-bullets">
+          <li>Completed an intensive program in EDA, statistical hypothesis testing, and supervised/unsupervised ML.</li>
+          <li>Built predictive models using NumPy, Pandas, Matplotlib, Seaborn, and Scikit-learn on real case studies.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">DEC 2024 – JAN 2025</div>
+      <div>
+        <div class="exp-role">Artificial Intelligence Intern</div>
+        <div class="exp-org">Bolt IoT · Remote</div>
+        <ul class="exp-bullets">
+          <li>Designed three independent AI projects: a custom ChatGPT-based conversational agent, a recipe generator, and a DALL-E image generation tool.</li>
+          <li>Owned the full lifecycle — architecture, build, and documentation — for each, in Linux/Unix environments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">JUN – JUL 2024</div>
+      <div>
+        <div class="exp-role">Clinical &amp; Lab Intern</div>
+        <div class="exp-org">Hazaribagh College of Dental Science Hospital</div>
+        <ul class="exp-bullets">
+          <li>Hands-on clinical training in pathology, biochemistry, immunology, and human physiology at Srinivas Hospital.</li>
+          <li>Direct exposure to biomedical testing and diagnostic workflows — the wet-lab grounding behind my computational work.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">NOV – DEC 2022</div>
+      <div>
+        <div class="exp-role">NGS Research Intern</div>
+        <div class="exp-org">Ethical Edufabrica</div>
+        <ul class="exp-bullets">
+          <li>Hands-on training in Next Generation Sequencing methodologies and practical sequencing-data analysis.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-head">
+    <span class="section-tag">// Foundation</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-icon" style="background:rgba(45,212,191,0.12);color:var(--teal)"><i class="ti ti-microscope" aria-hidden="true"></i></div>
+      </div>
+      <h4>M.Sc. Bioinformatics</h4>
+      <div class="uni">Pondicherry University</div>
+      <div class="edu-foot">
+        <span class="yr">JUL 2024 – JUL 2026</span>
+        <span class="cgpa high">9.11 / 10</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-top">
+        <div class="edu-icon" style="background:rgba(240,180,41,0.12);color:var(--amber)"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+      </div>
+      <h4>B.Sc. Biotechnology</h4>
+      <div class="uni">Vinoba Bhave University, Hazaribagh</div>
+      <div class="edu-foot">
+        <span class="yr">SEP 2021 – MAY 2024</span>
+        <span class="cgpa norm">7.73 / 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="section">
+  <div class="section-head">
+    <span class="section-tag">// Continued learning</span>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">Next Generation Sequencing (NGS)</div><div class="corg">Coursera</div></div></div>
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">Supervised ML: Regression &amp; Classification</div><div class="corg">Stanford / Coursera</div></div></div>
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">Foundations: Data, Data, Everywhere</div><div class="corg">Google / Coursera</div></div></div>
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">BCG GenAI Job Simulation</div><div class="corg">Forage</div></div></div>
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">Deloitte Australia Data Analytics</div><div class="corg">Forage</div></div></div>
+    <div class="cert-chip"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cname">100 Days of Python Bootcamp</div><div class="corg">Udemy</div></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GOALS -->
+<section class="section">
+  <div class="section-head">
+    <span class="section-tag">// What I'm looking for</span>
+    <h2 class="section-title">Where I add value</h2>
+  </div>
+  <div class="goals-banner">
+    <p>I'm targeting roles where <strong>computational rigor</strong> meets <strong class="amber-strong">biological insight</strong> — data scientist, ML engineer, or bioinformatics analyst positions, as well as research-track or PhD opportunities in cancer genomics and precision medicine. I build systems that don't just output a number, but explain <em>why</em> — because in healthcare, the "why" is the part that matters.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="cta-section" id="contact">
+  <h2>Let's build something that matters.</h2>
+  <p class="sub">Open to internships, full-time roles, and research collaborations — in bioinformatics, data science, or anywhere the two meet.</p>
+  <div class="cta-grid">
+    <a href="mailto:talharehmanhcs421@gmail.com" class="btn btn-primary"><i class="ti ti-mail" aria-hidden="true"></i>talharehmanhcs421@gmail.com</a>
+    <a href="tel:+919334236793" class="btn btn-ghost"><i class="ti ti-phone" aria-hidden="true"></i>+91-9334236793</a>
+    <a href="https://wa.me/919334236793" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>WhatsApp</a>
+    <a href="https://www.linkedin.com/in/talha-rehman-532342212/" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ti ti-brand-linkedin" aria-hidden="true"></i>LinkedIn</a>
+    <a href="https://github.com/Talharehman421" target="_blank" rel="noopener" class="btn btn-ghost"><i class="ti ti-brand-github" aria-hidden="true"></i>GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 TALHA REHMAN — BUILT WITH HTML &amp; CSS — HOSTED ON GITHUB PAGES</p>
+</footer>
+
+</div>
+</body>
+</html>
